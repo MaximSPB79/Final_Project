@@ -1,0 +1,19 @@
+max@max-VirtualBox:~$ cat > "Домашние животные"
+собака
+кошка
+хомяк
+ CRTL+D
+max@max-VirtualBox:~$ cat > "Вьючные животные"
+лошадь
+верблюд
+осел 
+ CRTL+D
+max@max-VirtualBox:~$ cat "Домашние животные" "Вьючные животные" > "Друзья человека"
+max@max-VirtualBox:~$ cat "Друзья человека" 
+max@max-VirtualBox:~$ mkdir animals
+max@max-VirtualBox:~$ mv "Друзья человека" ~/animals/
+
+max@max-VirtualBox:~$ cd /tmp
+max@max-VirtualBox:/tmp$ wget https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+max@max-VirtualBox:/tmp$ sudo dpkg -i mysql-apt-config_0.8.10-1_all.deb
+max@max-VirtualBox:/tmp$ sudo dpkg -r  mysql-apt-config

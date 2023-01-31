@@ -1,0 +1,127 @@
+CREATE SCHEMA `друзья_человека`;
+
+CREATE TABLE `друзья_человека`.`вид животных` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Вид` VARCHAR(45) NULL,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+INSERT INTO `друзья_человека`.`вид животных` (`id`, `Вид`) VALUES ('1', 'домашние');
+INSERT INTO `друзья_человека`.`вид животных` (`id`, `Вид`) VALUES ('2', 'вьючные');
+
+CREATE TABLE `друзья_человека`.`собака` (
+  `id_собаки` INT NOT NULL AUTO_INCREMENT,
+  `имя` VARCHAR(45) NOT NULL,
+  `дата рождения` DATETIME NULL,
+  `команды` VARCHAR(100) NULL,
+  `вид` INT NULL,
+  PRIMARY KEY (`id_собаки`));
+
+ALTER TABLE `друзья_человека`.`собака` 
+ADD INDEX `вид_key_idx` (`вид` ASC) VISIBLE;
+;
+ALTER TABLE `друзья_человека`.`собака` 
+ADD CONSTRAINT `вид_key`
+  FOREIGN KEY (`вид`)
+  REFERENCES `друзья_человека`.`вид животных` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+INSERT INTO `друзья_человека`.`собака` (`id_собаки`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('1', 'Багира', '2021.12.10', 'сидеть, лежать, петь', '1');
+INSERT INTO `друзья_человека`.`собака` (`id_собаки`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('2', 'Викинг', '2018.10.07', 'аппорт, барьер', '1');
+INSERT INTO `друзья_человека`.`собака` (`id_собаки`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('3', 'Хулиган', '2020.06.03', 'охранять, взять', '1');
+
+CREATE TABLE `друзья_человека`.`кошка` (
+  `id_кошки` INT NOT NULL AUTO_INCREMENT,
+  `имя` VARCHAR(45) NULL,
+  `дата рождения` DATE NULL,
+  `команды` VARCHAR(100) NULL,
+  `вид` INT NULL,
+  PRIMARY KEY (`id_кошки`));
+
+ALTER TABLE `друзья_человека`.`кошка` 
+ADD INDEX `кошка_вид_idx` (`вид` ASC) VISIBLE;
+;
+ALTER TABLE `друзья_человека`.`кошка` 
+ADD CONSTRAINT `кошка_вид`
+  FOREIGN KEY (`вид`)
+  REFERENCES `друзья_человека`.`вид животных` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+INSERT INTO `друзья_человека`.`кошка` (`id_кошки`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('1', 'Муська', '2020-10-01', 'спать', '1');
+INSERT INTO `друзья_человека`.`кошка` (`id_кошки`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('2', 'Васька', '2018-06-18', 'играть', '1');
+INSERT INTO `друзья_человека`.`кошка` (`id_кошки`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('3', 'Митька', '2019-09-17', 'есть', '1');
+CREATE TABLE `друзья_человека`.`хомяк` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `имя` VARCHAR(45) NULL,
+  `дата рождения` DATE NULL,
+  `команды` VARCHAR(100) NULL,
+  `вид` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `хомяк_вид_idx` (`вид` ASC) VISIBLE,
+  CONSTRAINT `хомяк_вид`
+    FOREIGN KEY (`вид`)
+    REFERENCES `друзья_человека`.`вид животных` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `друзья_человека`.`верблюд` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `имя` VARCHAR(45) NULL,
+  `дата рождения` DATE NULL,
+  `команды` VARCHAR(100) NULL,
+  `вид` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX ` верблюд _вид_idx` (`вид` ASC) VISIBLE,
+  CONSTRAINT ` верблюд _вид`
+    FOREIGN KEY (`вид`)
+    REFERENCES `друзья_человека`.`вид животных` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `друзья_человека`.`осел` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `имя` VARCHAR(45) NULL,
+  `дата рождения` DATE NULL,
+  `команды` VARCHAR(100) NULL,
+  `вид` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX ` осел _вид_idx` (`вид` ASC) VISIBLE,
+  CONSTRAINT ` осел _вид`
+    FOREIGN KEY (`вид`)
+    REFERENCES `друзья_человека`.`вид животных` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+INSERT INTO `друзья_человека`.`хомяк` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('1', 'Хомка', '2022-08-02', 'бегать', '1');
+INSERT INTO `друзья_человека`.`хомяк` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('2', 'Умка', '2021-12-09', 'прыгать', '1');
+INSERT INTO `друзья_человека`.`хомяк` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('3', 'Ромка', '2022-06-10', 'гулять', '1');
+
+INSERT INTO `друзья_человека`.`верблюд` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('1', 'Твист', '2018-05-20', 'нагнись', '2');
+INSERT INTO `друзья_человека`.`верблюд` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('2', 'Джаред', '2017-06-21', 'вперед', '2');
+INSERT INTO `друзья_человека`.`верблюд` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('3', 'Чайна', '2020-07-15', 'стоп', '2');
+
+INSERT INTO `друзья_человека`.`лошадь` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('1', 'Патрон', '2017-10-04', 'вперед, стоп', '2');
+INSERT INTO `друзья_человека`.`лошадь` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('2', 'Маруся', '2019-11-14', 'но, брр', '2');
+INSERT INTO `друзья_человека`.`лошадь` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('3', 'Бабер', '2021-02-13', 'галоп, прыг', '2');
+
+INSERT INTO `друзья_человека`.`осел` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('1', 'Берти', '2018-10-17', 'вперед, стоп', '2');
+INSERT INTO `друзья_человека`.`осел` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('2', 'Дора', '2020-04-02', 'лежать, спать', '2');
+INSERT INTO `друзья_человека`.`осел` (`id`, `имя`, `дата рождения`, `команды`, `вид`) VALUES ('3', 'Рокси', '2019-05-03', 'бежать', '2');
+
+TRUNCATE TABLE верблюд;
+SELECT * FROM лошадь
+union
+SELECT * FROM осел;
+
+SELECT * FROM кошка
+union
+SELECT * FROM лошадь
+union
+SELECT * FROM осел
+union
+SELECT * FROM собака
+union
+SELECT * FROM хомяк;
+
+
